@@ -1,6 +1,9 @@
 // Select the first element with class "item" and assign it to the variable mainFolderName
 const mainFolderName = document.querySelectorAll(".item")[0];
 
+//Set Title of main folder
+mainFolderName.title = mainFolderName.textContent;
+
 // Create a new div element and assign it to the variable overlay
 const overlay = document.createElement("div");
 
@@ -19,6 +22,12 @@ icon2.classList.add("ri-folder-add-line");
 icon3.classList.add("ri-restart-line");
 icon4.classList.add("ri-checkbox-indeterminate-line");
 
+// Add title attribute
+icon1.title = "New File...";
+icon2.title = "New Folder...";
+icon3.title = "Refresh Explorer";
+icon4.title = "Collapse Folders in Explorer";
+
 // Append the four icons as child elements to the overlay div
 overlay.appendChild(icon1);
 overlay.appendChild(icon2);
@@ -28,51 +37,57 @@ overlay.appendChild(icon4);
 // Append the overlay div as a child element to the mainFolderName element
 mainFolderName.appendChild(overlay);
 
-// Add an event listener to the mainFolderName element for mouseover event
 // When the mouse is over the mainFolderName element, display the overlay by setting its style.display property to "flex"
 mainFolderName.addEventListener("mouseover", () => {
   overlay.style.display = "flex";
 });
 
-// Add an event listener to the mainFolderName element for mouseout event
 // When the mouse is out of the mainFolderName element, hide the overlay by setting its style.display property to "none"
 mainFolderName.addEventListener("mouseout", () => {
   overlay.style.display = "none";
 });
 
-// Get all elements with class "explorer" and assign them to the variable explorer
 const explorer = document.getElementsByClassName("explorer");
-
-// Get all elements with class "sideNav i" and assign them to the variable sideNavIcons
 const sideNavIcons = document.querySelectorAll(".sideNav i");
-
-// Get the element with class "sideNav" and assign it to the variable sideNav
 const sideNav = document.querySelector(".sideNav");
-
-// Get the element with class "innerdiv" and assign it to the variable innerdiv
 const innerdiv = document.querySelector(".innerdiv");
-
-// Get the element with class "editor" and assign it to the variable editor
 const editor = document.querySelector(".editor");
 
-// Add a click event listener to the sideNav element
 sideNav.addEventListener("click", (e) => {
-  // Change the color of all sideNavIcons to "#dadada"
-  sideNavIcons.forEach((item) => {
-    item.style.color = "#dadada";
-    innerdiv.classList.add("hideExplorer");
-  });
-
-  // Change the color of the clicked element to "#FFF"
-  console.log();
-  e.target.style.color = "#FFF";
-
-  // If the clicked element has the class "ri-file-3-line"
-  if ("ri-file-3-line" === e.target.classList[0]) {
-    // Toggle the class "hideExplorer" on the innerdiv element
+  if (e.target.classList[0] === "ri-file-3-line") {
+    sideNavIcons.forEach((item) => {
+        item.style.color = "#dadada";
+      });
     innerdiv.classList.toggle("hideExplorer");
+    if (innerdiv.classList[1]) {
+      e.target.style.color = "#dadada";
+      innerdiv.style.width = "calc(100% + 27rem)";
+    } else {
+      // Change the color of the clicked element to "#FFF"
+      e.target.style.color = "#FFF";
+      innerdiv.style.width = '100%';
+    }
+  } else {
+    // Change the color of all sideNavIcons to "#dadada"
+    sideNavIcons.forEach((item) => {
+      item.style.color = "#dadada";
+      innerdiv.classList.add("hideExplorer");
+      innerdiv.style.width = "calc(100% + 27rem)";
+    });
+    e.target.style.color = "#fff";
   }
-  
-  // Output the class of the clicked element to the console
-  console.log(e.target.classList[0]);
 });
+
+// window.addEventListener("keydown", (e) => {
+//   if (e.ctrlKey && e.keyCode === 66) {
+//     innerdiv.classList.toggle("hideExplorer");
+//     if (innerdiv.classList[1]) {
+//       e.target.style.color = "#dadada";
+//       innerdiv.style.width = "calc(100% + 27rem)";
+//     } else {
+//       // Change the color of the clicked element to "#FFF"
+//       e.target.style.color = "#FFF";
+//       editor.style.width = "calc(100% - 27rem)";
+//     }
+//   }
+// });

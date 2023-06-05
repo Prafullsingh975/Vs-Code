@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VS Code</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/stylesheets/home.css" />
+  </head>
+  <body>
+    <div class="main">
+      <div class="mainNav">
+        <div class="mainNavLft">
+          <img src="/images/vs_code_icon.png" alt="vs_code_icon" />
+        <div class="mainNavLinks">
+          <a href="">File</a>
+          <a href="">Edit</a>
+          <a href="">Selection</a>
+          <a href="">View</a>
+          <a href="">Go</a>
+          <a href="">Run</a>
+          <a href="">Terminal</a>
+          <a href="">Help</a>
+        </div>
+        </div>
+        <div class="mainNavCntr">
+          <p><%= openFileName %><%- openFileName ? ' - ' : null %><%= folderName %><%- folderName ? ' - ' : null %> Visual Studio Code</p>
+        </div>
+        <div class="navMainIcons">
+          <div class="layoutIcons">
+            <i class="ri-layout-left-line"></i>
+            <i class="ri-layout-bottom-line"></i>
+            <i class="ri-layout-right-line"></i>
+            <i class="ri-layout-2-line"></i>
+          </div>
+          <div class="closeWindow">
+            <i class='bx bx-minus'></i>
+            <i class='bx bx-copy' ></i>
+            <i class="ri-close-fill"></i>
+          </div>
+        </div>
+      </div>
+      <div class="sideNav">
+        <div class="sideNavTop">
+          <i title="Explorer" class="ri-file-3-line"></i>
+          <i title="Search" class="ri-search-line"></i>
+          <i title="Source Control" class="ri-git-branch-line"></i>
+          <i title="Debug" class="ri-bug-line"></i>
+          <i title="Extension" class="bx bxs-widget"></i>
+          <i title="Remote Explorer" class="bx bx-desktop"></i>
+        </div>
+        <div class="sideNavBtm">
+          <i title="Account" class="ri-account-circle-line"></i>
+          <i title="Setting" class="ri-settings-5-line"></i>
+        </div>
+      </div>
+      <div class="navMainBtm">
+        <div class="navMainBtnLft"></div>
+      </div>
+      <div class="innerdiv">
+        <div class="explorer">
+          <div class="exNav">
+            <h5>EXPLORER</h5>
+            <i class="ri-more-line"></i>
+          </div>
+          <% function loader(fol){ %>
+          <div class="folder">
+            <div title="<%= fol.path %>" class="item">
+              <span class="itemContent">
+                <i class="ri-folder-3-line"></i>
+                <h3><%= fol.name %></h3>
+              </span>
+            </div>
+            <div class="items">
+              <% fol.contents.forEach(item=>{ %> <% if(item.contents){ %> <%
+              loader(item) %> <% } else{ %>
+              <a href="/openFile/<%= item.path %>">
+                <div title="<%= item.path %>" class="item">
+                  <span class="itemContent">
+                    <i class="ri-file-3-line"></i>
+                    <p><%= item.name %></p>
+                  </span>
+                </div>
+              </a>
+              <% } %> <% }) %>
+            </div>
+          </div>
+          <% } %> <% loader(folder) %>
+          <div class="exbtm">
+            <div class="outline">
+              <i class="ri-arrow-right-s-line"></i>
+              <h5>OUTLINE</h5>
+            </div>
+            <div class="outline">
+              <i class="ri-arrow-right-s-line"></i>
+              <h5>TIMELINE</h5>
+            </div>
+          </div>
+        </div>
