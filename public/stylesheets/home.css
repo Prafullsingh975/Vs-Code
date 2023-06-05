@@ -1,0 +1,279 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    user-select: none;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+html {
+  font-size: 62.5%;
+}
+:root {
+  --sideNav: #000000b4;
+  --mainNav: #dadada;
+  --navMainBtm: #007ACC;
+  --white: #fff;
+  --explorer: #ebe9e9;
+  --text: #00000097;
+  --hover:#b4b0b0;
+}
+.main {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+a{
+    text-decoration: none;
+    color: var(--text);
+}
+.sideNav {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  z-index: 99;
+  width: 5.8rem;
+  background-color: var(--sideNav);
+  padding: 3.5rem 0;
+}
+.sideNavTop{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.sideNavBtm{
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.sideNav i{
+  display: block;
+  font-size: 3.5rem;
+  color: var(--mainNav);
+}
+.active, .sideNav i:hover{
+  color: var(--white);
+}
+/* .sideNav i:active{
+  color: var(--white);
+} */
+.mainNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 999;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 3.5rem;
+  background-color: var(--mainNav);
+  padding: 0 1rem;
+  font-size: 1.5rem;
+  color: black;
+}
+.mainNav img{
+  height: 2.5rem;
+}
+.mainNavLft{
+  display: flex;
+  gap: 2rem;
+}
+.mainNavLinks{
+  display: flex;
+  gap: 2rem;
+  font-size: 1.6rem;
+}
+.mainNavLinks a{
+  color: black;
+}
+.navMainIcons{
+  display: flex;
+  gap: 3rem;
+  font-size: 2.1rem;
+  align-items: center;
+}
+.layoutIcons{
+  display: flex ;
+  gap: 1.2rem;
+  color: var(--text);
+  cursor: pointer;
+}
+.closeWindow{
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-size: 1.8rem;
+}
+.closeWindow i{
+  opacity: .8;
+}
+.mainNav i:hover{
+  background-color: var(--hover);
+}
+.mainNav a:hover{
+  background-color: var(--hover);
+}
+.closeWindow .ri-close-fill:hover{
+  background-color: red;
+}
+.navMainBtm{
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    height: 2.5rem;
+    bottom: 0%;
+    background-color: var(--navMainBtm);
+}
+.innerdiv{
+  display: flex;
+  overflow: hidden;
+    position: absolute;
+    top: 0%;
+    height: 100%;
+    width: 100%;
+    background-color: var(--white);
+    padding: 3.5rem 0rem 2.5rem 5.8rem;
+}
+.hideExplorer{
+  transform: translateX(-27rem);
+}
+.explorer{
+    position: relative;
+    height: 100%;
+    width: 27rem;
+    background-color: var(--explorer);
+}
+.exNav{
+    display: flex;
+    width: 100%;
+    height: 3.5rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: #2d2d2df2;
+    background-color: ;
+}
+.exNav h5{
+    font-weight: 400;
+    opacity: .8;
+}
+.exNav i{
+    font-size: 2rem;
+}
+.items{
+    margin-left: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid #0000006b;
+  }
+  .items p{
+    font-weight: 500;
+}
+  .item{
+   display: flex;
+    margin-left: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  .itemContent{
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+  }
+  .overlay{
+    display: none;
+    gap: .5rem;
+    height: 100%;
+    color: var(--text);
+    font-size: 1.9rem;
+  }
+  .overlay i:hover{
+    background-color: #d0cdcd;
+  }
+  .folder{
+    margin-left: .5rem;
+    font-size: 1.5rem;
+  }
+  .folder .item{
+    padding: .2rem;
+  }
+  .folder .item i{
+    color: var(--text);
+  }
+  .folder h3{
+    color:var(--text);
+    font-weight: 500;
+  }
+.exbtm{
+    position: fixed;
+    width: 27rem; /* 100% width kr k dekhna hai*/
+    bottom: 2.5rem;
+    height: 6rem;
+    /* background-color: red; */
+  }
+  .outline{
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    width: 100%;
+    height: 50%;
+    padding: .2rem;
+    color: var(--text);
+    border-top: 1px solid #d0cdcd;
+    
+  }
+  .outline h5{
+    font-weight: 500;
+  }
+  .editor{
+    height: 100%;
+    width: calc(100% - 27rem);
+    background-color: var(--white);
+  }
+  .editorNav{
+    display: flex;
+    height: 3.5rem;
+    width: 100%;
+    background-color: var(--explorer);
+  }
+  .openFile{
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    height: 100%;
+    width: fit-content;
+    padding: 1rem;
+    background-color: var(--mainNav);
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  .openFile:active{
+    background-color: var(--white);
+  }
+
+ .textArea textarea{
+  /* position: absolute; */
+  width: 100vw;
+  height: calc(100vh - 9.5rem);
+  border: none;
+  outline: none;
+  padding: 1rem 1.5rem;
+  /* bottom: 2.5rem; */
+  font-family: "consolas";
+  background-color: red;
+  font-size: 1.5rem;
+ }
