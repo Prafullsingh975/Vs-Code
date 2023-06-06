@@ -56,8 +56,8 @@ const editor = document.querySelector(".editor");
 sideNav.addEventListener("click", (e) => {
   if (e.target.classList[0] === "ri-file-3-line") {
     sideNavIcons.forEach((item) => {
-        item.style.color = "#dadada";
-      });
+      item.style.color = "#dadada";
+    });
     innerdiv.classList.toggle("hideExplorer");
     if (innerdiv.classList[1]) {
       e.target.style.color = "#dadada";
@@ -65,7 +65,7 @@ sideNav.addEventListener("click", (e) => {
     } else {
       // Change the color of the clicked element to "#FFF"
       e.target.style.color = "#FFF";
-      innerdiv.style.width = '100%';
+      innerdiv.style.width = "100%";
     }
   } else {
     // Change the color of all sideNavIcons to "#dadada"
@@ -77,6 +77,59 @@ sideNav.addEventListener("click", (e) => {
     e.target.style.color = "#fff";
   }
 });
+
+//pop up menu for creating files and folder
+const contentMenu = document.querySelector(".contentMenu");
+const menu = document.querySelectorAll(".item");
+
+menu.forEach((m) => {
+  if (m.parentElement.className === "folder") {
+    m.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+      contentMenu.style.display = "initial";
+      contentMenu.style.top = `${e.y - 30}px`;
+      contentMenu.style.left = `${e.x - 30}px`;
+    });
+    window.addEventListener("click", () => {
+      contentMenu.style.display = "none";
+    });
+  }
+});
+
+//Show createFile and createFolder form
+const createFile = document.querySelector("#createFile")
+const createFolder = document.querySelector("#createFolder")
+
+const onOff = () => {
+    document.querySelectorAll(".items form").forEach((elm) => {
+      elm.style.display = "none"
+    })
+  }
+
+contentMenu.addEventListener('click',(e)=>{
+    console.log(createFile);
+    onOff();
+    console.log(e.target.innerText);
+    switch (e.target.innerText) {
+        case "New File...":createFile.style.display = "initial"
+            break;
+        case "New Folder...":createFolder.style.display = "initial"
+            break;
+    
+        default:
+            break;
+    }
+});
+
+// Off form if user press Esc key
+window.addEventListener("keydown", (detail) => {
+    if(detail.keyCode === 27){
+      onOff();
+      document.querySelectorAll("input").forEach((elm) => {
+      elm.value = "";
+    })
+    }
+  })
 
 // window.addEventListener("keydown", (e) => {
 //   if (e.ctrlKey && e.keyCode === 66) {

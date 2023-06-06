@@ -156,6 +156,15 @@ a{
     width: 27rem;
     background-color: var(--explorer);
 }
+.explorer .create{
+  border: 1px solid var(--navMainBtm);
+  width: 85%;
+  margin-left: 2rem;
+  outline: none;
+}
+.explorer form{
+  display: none;
+}
 .exNav{
     display: flex;
     width: 100%;
@@ -219,6 +228,28 @@ a{
   .folder h3{
     color:var(--text);
     font-weight: 500;
+  }
+  .explorer .contentMenu{
+    display: none;
+    /* opacity: 0; */
+    box-shadow: -5px 5px 17px 9px rgba(0,0,0,0.1);
+    position: absolute;
+    z-index: 99999999999;
+    width: 250px;
+    background-color: var(--white);
+    border-radius: 5px;
+  }
+  .contentMenu h2{
+    padding: 4px 10px;
+    font-size: 15px;
+  }
+  .contentMenu h2:hover{
+    background-color: var(--navMainBtm);
+    border-radius: 5px;
+  }
+  .contentMenu hr{
+    margin: 2px 0px;
+    border-color: #dadada;
   }
 .exbtm{
     position: fixed;

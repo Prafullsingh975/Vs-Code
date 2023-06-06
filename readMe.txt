@@ -8,10 +8,20 @@
 
 => Open file at same route.
 
-=> Create File and Folder from UI.
+=> autoFocus in createFolder input. -- not working
+
+=> file ya folder main folder me hi create ho raha hai.
+
+=> Create File and Folder from UI. ✔
+
+=> Content Menu ko file pe v add krna hai
+
+=> Delete File and Folder From UI.
 
 => Update file from UI. ✔
 
 => Main nav me Folder Name-FileName ki jagah unka naam aana chahiye openFile.ejs me. ✔
 
 => Optmize script js file code -- reduse code repeatation
+
+=> Add compiler (npm Compile run)

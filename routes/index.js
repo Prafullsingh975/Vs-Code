@@ -30,4 +30,25 @@ router.post('/save/*',(req,res,next)=>{
   })
 })
 
+router.post('/createFile/*',(req,res,next)=>{
+  const filePath = path.join(req.params[0],req.body.fileName);
+  fs.writeFile(`${filePath}`,"",(err)=>{
+    try {
+      res.redirect('back');
+    } catch (err) {
+      console.log(err);
+    }
+  })
+})
+router.post('/createFolder/*',(req,res,next)=>{
+  const folderPath = path.join(req.params[0],req.body.folderName);
+  fs.mkdir(`${folderPath}`,{},(err)=>{
+    try {
+      res.redirect('back');
+    } catch (err) {
+      console.log(err);
+    }
+  })
+})
+
 module.exports = router;

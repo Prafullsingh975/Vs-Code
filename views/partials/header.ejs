@@ -84,6 +84,14 @@
               </span>
             </div>
             <div class="items">
+              <div class="forms">
+                <form action="/createFile/<%= fol.path %>" method="post" id="createFile">
+                  <input type="text"class="create" autocomplete="off" autofocus name="fileName">
+                </form>
+                <form action="/createFolder/<%= fol.path %>" method="post" id="createFolder">
+                  <input type="text"class="create" autocomplete="off" autofocus name="folderName">
+                </form>
+              </div>
               <% fol.contents.forEach(item=>{ %> <% if(item.contents){ %> <%
               loader(item) %> <% } else{ %>
               <a href="/openFile/<%= item.path %>">
@@ -98,6 +106,17 @@
             </div>
           </div>
           <% } %> <% loader(folder) %>
+          <div class="contentMenu">
+            <h2>New File...</h2>
+            <h2>New Folder...</h2>
+            <h2>Rename</h2>
+            <h2>Delete</h2>
+            <h2>Cut</h2>
+            <h2>Copy</h2>
+            <h2>Paste</h2>
+            <h2>Share</h2>
+            <h2>Copy Path</h2>
+          </div>
           <div class="exbtm">
             <div class="outline">
               <i class="ri-arrow-right-s-line"></i>
