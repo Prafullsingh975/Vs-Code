@@ -1,0 +1,22 @@
+const fs = require('fs');
+
+function deleteFolderRecursive(path) {
+    if (fs.existsSync(path)) {
+      fs.readdirSync(path).forEach((file) => {
+        const curPath = path + "/" + file;
+  
+        if (fs.lstatSync(curPath).isDirectory()) {
+          // Recursively delete subdirectories
+          deleteFolderRecursive(curPath);
+        } else {
+          // Delete files
+          fs.unlinkSync(curPath);
+        }
+      });
+  
+      // Delete the empty directory
+      fs.rmdirSync(path);
+    }
+  }
+
+  module.exports = deleteFolderRecursive;

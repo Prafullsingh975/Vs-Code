@@ -3,6 +3,8 @@ var router = express.Router();
 const fs = require("node:fs");
 const path = require("path");
 const readDirectoryRecursively = require('../public/javascripts/readDirectoryRecursively');
+const deleteFolderRecursive = require('../public/javascripts/deleteFolderRecursive');
+
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -50,5 +52,17 @@ router.post('/createFolder/*',(req,res,next)=>{
     }
   })
 })
-
+router.get('/deleteFile/*',(req,res,next)=>{
+  fs.unlink(`${req.params[0]}`,(err)=>{
+    try {
+      res.redirect("back")
+    } catch (err) {
+      console.log(err);
+    }
+  })
+})
+router.get('/deleteFolder/*',(req,res,next)=>{
+  deleteFolderRecursive(`${req.params[0]}`);
+  res.redirect("back");
+})
 module.exports = router;

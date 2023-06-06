@@ -174,7 +174,6 @@ a{
     padding: 1rem;
     font-size: 1.5rem;
     color: #2d2d2df2;
-    background-color: ;
 }
 .exNav h5{
     font-weight: 400;
@@ -200,6 +199,10 @@ a{
     justify-content: space-between;
     cursor: pointer;
   }
+  .item:hover{
+    background-color: var(--mainNav);
+  }
+  
   .itemContent{
     display: flex;
     gap: .5rem;
@@ -229,7 +232,7 @@ a{
     color:var(--text);
     font-weight: 500;
   }
-  .explorer .contentMenu{
+  .explorer .contentMenu,.fileContentMenu{
     display: none;
     /* opacity: 0; */
     box-shadow: -5px 5px 17px 9px rgba(0,0,0,0.1);
@@ -239,15 +242,15 @@ a{
     background-color: var(--white);
     border-radius: 5px;
   }
-  .contentMenu h2{
+  .contentMenu h2,.fileContentMenu h2{
     padding: 4px 10px;
     font-size: 15px;
   }
-  .contentMenu h2:hover{
+  .contentMenu h2:hover,.fileContentMenu h2:hover{
     background-color: var(--navMainBtm);
     border-radius: 5px;
   }
-  .contentMenu hr{
+  .contentMenu hr,.fileContentMenu hr{
     margin: 2px 0px;
     border-color: #dadada;
   }

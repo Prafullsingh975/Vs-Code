@@ -1,4 +1,4 @@
-=> OnClick folder collapse.
+=> OnClick folder collapse. ✔
 
 => Explorer ko hide krne pe editor pe frk nhi padna chahiye. ✔
 
@@ -8,20 +8,24 @@
 
 => Open file at same route.
 
-=> autoFocus in createFolder input. -- not working
+=> Add input focus from JS. ✔
 
-=> file ya folder main folder me hi create ho raha hai.
+=> Save Editor data on keyDown ctrl + s. ✔ 
 
 => Create File and Folder from UI. ✔
 
-=> Content Menu ko file pe v add krna hai
+=> Add Content Menu to file. ✔
 
-=> Delete File and Folder From UI.
+=> Delete File and Folder From UI. ✔
 
 => Update file from UI. ✔
 
 => Main nav me Folder Name-FileName ki jagah unka naam aana chahiye openFile.ejs me. ✔
 
+=> Explorer onHover color dark. ✔
+
+=> Exporer on active color blue.
+
 => Optmize script js file code -- reduse code repeatation
 
-=> Add compiler (npm Compile run)
+=> Add compiler (npm Compile run) 

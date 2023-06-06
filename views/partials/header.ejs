@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta author = "Prafull">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VS Code</title>
@@ -79,6 +80,7 @@
           <div class="folder">
             <div title="<%= fol.path %>" class="item">
               <span class="itemContent">
+                <i class="ri-arrow-right-s-line collapsedIcon"></i>
                 <i class="ri-folder-3-line"></i>
                 <h3><%= fol.name %></h3>
               </span>
@@ -86,10 +88,10 @@
             <div class="items">
               <div class="forms">
                 <form action="/createFile/<%= fol.path %>" method="post" id="createFile">
-                  <input type="text"class="create" autocomplete="off" autofocus name="fileName">
+                  <input type="text"class="create" autocomplete="off" name="fileName">
                 </form>
                 <form action="/createFolder/<%= fol.path %>" method="post" id="createFolder">
-                  <input type="text"class="create" autocomplete="off" autofocus name="folderName">
+                  <input type="text"class="create" autocomplete="off" name="folderName">
                 </form>
               </div>
               <% fol.contents.forEach(item=>{ %> <% if(item.contents){ %> <%
@@ -110,7 +112,18 @@
             <h2>New File...</h2>
             <h2>New Folder...</h2>
             <h2>Rename</h2>
-            <h2>Delete</h2>
+            <a href="#" id="delete"><h2>Delete</h2></a>
+            <h2>Cut</h2>
+            <h2>Copy</h2>
+            <h2>Paste</h2>
+            <h2>Share</h2>
+            <h2>Copy Path</h2>
+          </div>
+          <div class="fileContentMenu">
+            <h2>Open in Live Server</h2>
+            <h2>Open to the Side</h2>
+            <h2>Rename</h2>
+            <a href="#" id="deleteFile"><h2>Delete</h2></a>
             <h2>Cut</h2>
             <h2>Copy</h2>
             <h2>Paste</h2>

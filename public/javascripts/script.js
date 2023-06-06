@@ -53,6 +53,7 @@ const sideNav = document.querySelector(".sideNav");
 const innerdiv = document.querySelector(".innerdiv");
 const editor = document.querySelector(".editor");
 
+// Toggle Explorer onClick
 sideNav.addEventListener("click", (e) => {
   if (e.target.classList[0] === "ri-file-3-line") {
     sideNavIcons.forEach((item) => {
@@ -78,69 +79,154 @@ sideNav.addEventListener("click", (e) => {
   }
 });
 
+// Toggle Explorer on ctrl + B
+const iconExplorer = document.querySelector(".ri-file-3-line");
+document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.keyCode === 66) {
+      e.preventDefault();
+      innerdiv.classList.toggle("hideExplorer");
+      if (innerdiv.classList.contains('hideExplorer')) {
+        iconExplorer.style.color = "#dadada";
+        innerdiv.style.width = "calc(100% + 27rem)";
+      } else {
+        // Change the color of the clicked element to "#FFF"
+        iconExplorer.style.color = "#FFF";
+        innerdiv.style.width = "100%";
+      }
+    }
+  });
+
 //pop up menu for creating files and folder
 const contentMenu = document.querySelector(".contentMenu");
+const fileContentMenu = document.querySelector(".fileContentMenu");
 const menu = document.querySelectorAll(".item");
+const createFile = document.querySelectorAll("#createFile");
+const createFolder = document.querySelectorAll("#createFolder");
 
-menu.forEach((m) => {
-  if (m.parentElement.className === "folder") {
-    m.addEventListener("contextmenu", (e) => {
-      e.preventDefault();
+const onOff = () => {
+  document.querySelectorAll(".items form").forEach((elm) => {
+    elm.style.display = "none";
+  });
+};
+const offContextMenu = () => {
+  contentMenu.style.display = "none";
+  fileContentMenu.style.display = "none";
+};
+menu.forEach((m, index) => {
+  m.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+    offContextMenu();
+    if (m.parentElement.className === "folder") {
       contentMenu.style.display = "initial";
       contentMenu.style.top = `${e.y - 30}px`;
       contentMenu.style.left = `${e.x - 30}px`;
-    });
-    window.addEventListener("click", () => {
-      contentMenu.style.display = "none";
-    });
-  }
-});
 
-//Show createFile and createFolder form
-const createFile = document.querySelector("#createFile")
-const createFolder = document.querySelector("#createFolder")
+      //Show createFile and createFolder form
 
-const onOff = () => {
-    document.querySelectorAll(".items form").forEach((elm) => {
-      elm.style.display = "none"
-    })
-  }
+      contentMenu.addEventListener("click", (e) => {
+        
+        onOff();
 
-contentMenu.addEventListener('click',(e)=>{
-    console.log(createFile);
-    onOff();
-    console.log(e.target.innerText);
-    switch (e.target.innerText) {
-        case "New File...":createFile.style.display = "initial"
+        switch (e.target.innerText) {
+          case "New File...":
+            createFile[index].style.display = "initial";
+            createFile[index].childNodes[1].focus();
             break;
-        case "New Folder...":createFolder.style.display = "initial"
+          case "New Folder...":
+            createFolder[index].style.display = "initial";
+            createFolder[index].childNodes[1].focus();
             break;
-    
-        default:
+          case "Delete":
+            const deleteFolder = document.getElementById("delete");
+            deleteFolder.href = "deleteFolder/" + menu[index].title;
             break;
+
+          default:
+            break;
+        }
+      });
+    } 
+    else {
+      fileContentMenu.style.display = "initial";
+      fileContentMenu.style.top = `${e.y - 30}px`;
+      fileContentMenu.style.left = `${e.x - 30}px`;
     }
-});
 
-// Off form if user press Esc key
-window.addEventListener("keydown", (detail) => {
-    if(detail.keyCode === 27){
+    //Delete File
+    fileContentMenu.addEventListener("click",(e)=>{
+        console.log(e.target.innerText);
+        switch (e.target.innerText) {
+            case "Delete":
+                const deleteFile = document.querySelector(".fileContentMenu #deleteFile");
+                deleteFile.href = "deleteFile/" + menu[index].title;
+                break;
+        
+            default:
+                break;
+        }
+      })
+
+
+  });
+  // Off form if user press Esc key
+  window.addEventListener("keydown", (detail) => {
+    if (detail.keyCode === 27) {
       onOff();
-      document.querySelectorAll("input").forEach((elm) => {
-      elm.value = "";
-    })
+      document.querySelectorAll(".forms input").forEach(elm=>elm.value="");
     }
-  })
+  });
+  window.addEventListener("click", () => {
+    contentMenu.style.display = "none";
+    fileContentMenu.style.display = "none";
+  });
+});
 
-// window.addEventListener("keydown", (e) => {
-//   if (e.ctrlKey && e.keyCode === 66) {
-//     innerdiv.classList.toggle("hideExplorer");
-//     if (innerdiv.classList[1]) {
-//       e.target.style.color = "#dadada";
-//       innerdiv.style.width = "calc(100% + 27rem)";
-//     } else {
-//       // Change the color of the clicked element to "#FFF"
-//       e.target.style.color = "#FFF";
-//       editor.style.width = "calc(100% - 27rem)";
-//     }
-//   }
-// });
+// Collapse all folders
+const items = document.querySelectorAll(".items");
+const collapsedIcon = document.querySelectorAll(".collapsedIcon");
+const collapseAll = ()=>{
+    items.forEach((items)=>{
+        items.style.display="none"
+    });
+    collapsedIcon.forEach(elm=>{
+        elm.classList.add('ri-arrow-right-s-line');
+        elm.classList.remove("ri-arrow-down-s-line");
+    })
+}
+collapseAll();
+icon4.addEventListener('click',()=>{
+    collapseAll();
+})
+
+// OnClick folder collapse
+
+collapsedIcon.forEach((elm,index)=>{
+    elm.addEventListener("click",(it)=>{
+        if (it.target.classList.contains('ri-arrow-right-s-line')) {
+            items[index].style.display = "flex";
+            collapsedIcon[index].classList.remove('ri-arrow-right-s-line');
+            collapsedIcon[index].classList.add("ri-arrow-down-s-line");  
+        }
+        else{
+            items[index].style.display = "none";
+        collapsedIcon[index].classList.add('ri-arrow-right-s-line');
+        collapsedIcon[index].classList.remove("ri-arrow-down-s-line");
+        }
+    })
+})
+
+
+// Save data 
+document.addEventListener("keydown", function(event) {
+    // Check if Ctrl + S was pressed
+    if (event.ctrlKey && event.key === "s") {
+      event.preventDefault(); // Prevent the default browser save action
+      // Get the form element
+      var form = document.getElementById("saveData");
+      if (form) {
+        form.submit(); // Submit the form
+      }
+    }
+  });
+  
+
